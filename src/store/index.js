@@ -9,11 +9,7 @@ export default createStore({
   mutations: {
     // Если отфильтрованный массив имеет данные - в стор, если нет, передаём пустой массив
     SET_USERS_TO_STATE: (state, users) => {
-      if (users.length) {
-        state.users = users
-      } else {
-        state.users = []
-      }
+      state.users = users
     },
     // Очистка массива юзеров
     CLEAR_USERS_IN_STATE: (state) => {
@@ -37,8 +33,8 @@ export default createStore({
           // Сортировка по переданному searchValue
           const searchArr = concatArr.filter(item => {
             return (
-              item.name.toLowerCase().includes(value.toLowerCase()) ||
-              item.username.toLowerCase().includes(value.toLowerCase())
+              item.name.toLowerCase().startsWith(value.toLowerCase()) ||
+              item.username.toLowerCase().startsWith(value.toLowerCase())
             )
           })
           commit('SET_USERS_TO_STATE', searchArr);
