@@ -60,8 +60,7 @@ export default {
   methods: {
     ...mapActions([
       'GET_USERS_FROM_API',
-      'CLEAR_USERS',
-      'GET_PHOTOS_FROM_API'
+      'CLEAR_USERS'
     ]),
     // Очистка списка
     clearData() {
