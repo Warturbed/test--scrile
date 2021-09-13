@@ -19,6 +19,7 @@
               :key="user.id"
               :user_data="user"
               @click="chosenUser(user.name)"
+              @keydown.enter="chosenUser(user.name)"
             />
           </ul>
         </div>
@@ -38,7 +39,6 @@ export default {
   data() {
     return {
       searchValue: '',
-      focus: null
     }
   },
   computed: {
@@ -46,16 +46,17 @@ export default {
       'USERS'
     ]),
     // Функция для адекватной работы иконки загрузки
-    // Суть в том, что по дефолту массив в сторе является строкой
+    // Суть в том, что по дефолту массив в сторе является массивом
+    // Чтобы появилась иконка загрузки массив в сторе становится строкой (this.CLEAR_USERS)
     // Чтобы понять, что массив отфильтрован, но пуст, в сторе он становится пустым массивом
+    // Таким образом фиксится бесконечная загрузка если длина отфильтрованного массива = 0
     searchDataType() {
       if (typeof this.USERS === 'string') {
         return false;
       } else {
         return true;
       }
-    },
-    
+    },   
   },
   methods: {
     ...mapActions([
@@ -66,6 +67,7 @@ export default {
     clearData() {
       this.searchValue = ''
     },
+    // Значение нажатого пользователя передаём в input
     chosenUser(value) {
       this.searchValue = value
     },

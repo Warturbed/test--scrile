@@ -17,12 +17,6 @@ export default {
             return {}
         }
     },
-  },
-  computed: {
-    
-  },
-  methods: {
-    
   }
 }
 </script>
